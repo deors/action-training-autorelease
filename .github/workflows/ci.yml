@@ -32,10 +32,6 @@ jobs:
         id: npm-ci
         run: npm ci
 
-      - name: Build dist/ Directory
-        id: build
-        run: npm run bundle
-
       - name: Check Format
         id: npm-format-check
         run: npm run format:check
@@ -56,6 +52,10 @@ jobs:
       - name: Checkout
         id: checkout
         uses: actions/checkout@v4
+
+      - name: Build dist/ Directory
+        id: build
+        run: npm run bundle
 
       - name: Test Local Action
         id: test-action
