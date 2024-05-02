@@ -32,6 +32,10 @@ jobs:
         id: npm-ci
         run: npm ci
 
+      - name: Build dist/ Directory
+        id: build
+        run: npm run bundle
+
       - name: Check Format
         id: npm-format-check
         run: npm run format:check
