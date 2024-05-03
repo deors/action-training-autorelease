@@ -12,7 +12,7 @@ export async function run(): Promise<void> {
   try {
     const githubToken = core.getInput('github-token')
     const tag = event.getCreatedTag()
-    var releaseUrl = ''
+    let releaseUrl = ''
     if (tag && version.isSemVer(tag)) {
       core.info(`The tag ${tag} is a valid SemVer version`)
       const changeLog = await git.getChangesIntroducedByTag(tag)

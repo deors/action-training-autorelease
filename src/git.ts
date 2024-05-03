@@ -1,6 +1,5 @@
 import * as core from '@actions/core'
 import * as exec from '@actions/exec'
-import { ExecOptions } from 'child_process'
 
 export async function getChangesIntroducedByTag(tag: string): Promise<string> {
   const previousTag = await getPreviousTag(tag)
