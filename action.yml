@@ -1,12 +1,13 @@
 name: 'Auto Release Draft'
 description: 'Provide a description here'
 author: 'Your name or organization here'
-
-# Define your outputs here.
+inputs:
+  github-token:
+    description: 'The GitHub token used to authenticate with the GitHub API'
+    required: true
 outputs:
   release-url:
     description: 'The URL for the draft release just created'
-
 runs:
   using: node20
   main: dist/index.js

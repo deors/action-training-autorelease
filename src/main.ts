@@ -1,4 +1,8 @@
 import * as core from '@actions/core'
+import * as event from './event'
+import * as version from './version'
+import * as git from './git'
+import * as github from './github'
 
 /**
  * The main function for the action.
@@ -6,7 +10,16 @@ import * as core from '@actions/core'
  */
 export async function run(): Promise<void> {
   try {
-    core.setOutput('release-url', 'http://example.com/release/123456')
+    const githubToken = core.getInput('github-token')
+    const tag = event.getCreatedTag()
+    var releaseUrl = ''
+    if (tag && version.isSemVer(tag)) {
+      core.info(`The tag ${tag} is a valid SemVer version`)
+      const changeLog = await git.getChangesIntroducedByTag(tag)
+      releaseUrl = await github.createReleaseDraft(tag, githubToken, changeLog)
+    }
+
+    core.setOutput('release-url', releaseUrl)
   } catch (error) {
     // Fail the workflow run if an error occurs
     if (error instanceof Error) core.setFailed(error.message)

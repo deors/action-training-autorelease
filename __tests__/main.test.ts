@@ -18,7 +18,7 @@ describe('When running the action', () => {
     await main.run()
     expect(mockSetOutput).toHaveBeenCalledWith(
       'release-url',
-      'http://example.com/release/123456'
+      ''
     )
   })
 })
