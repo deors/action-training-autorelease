@@ -16,9 +16,6 @@ describe('When running the action', () => {
 
   test('the output URL is set', async () => {
     await main.run()
-    expect(mockSetOutput).toHaveBeenCalledWith(
-      'release-url',
-      ''
-    )
+    expect(mockSetOutput).toHaveBeenCalledWith('release-url', '')
   })
 })
